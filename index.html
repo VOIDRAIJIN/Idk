@@ -68,9 +68,9 @@
     </div>
     <div class="progress-container">
       <div id="progressBar"></div>
-      <div id="progressTime">0:00 /0:27</div>
+      <div id="progressTime">0:00 / 0:00</div>
     </div>
-    <img src="snack.png" alt="Bike" width="300" height="auto">
+    <img src="Bike.jpg" alt="Bike" width="300" height="auto">
     <div id="debug"></div>
     
     <script>
@@ -81,7 +81,7 @@
       const progressTime = document.getElementById("progressTime");
 
       function playAudio() {
-      document.getElementById("myAudio").play().then(() => {
+        document.getElementById("myAudio").play().then(() => {
           debugElement.textContent = "Audio playing successfully";
           updateProgress();
         }).catch(e => {
@@ -110,13 +110,13 @@
       function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = Math.floor(seconds % 60);
-        return ⁠ ${minutes}:${remainingSeconds.toString().padStart(2, '0')} ⁠;
+        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
       }
 
       function updateProgress() {
         const progress = (audio.currentTime / audio.duration) * 100;
-        progressBar.style.width = ⁠ ${progress}% ⁠;
-        progressTime.textContent = ⁠ ${formatTime(audio.currentTime)} / ${formatTime(audio.duration)} ⁠;
+        progressBar.style.width = `${progress}%`;
+        progressTime.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
 
         if (!audio.paused) {
           requestAnimationFrame(updateProgress);
